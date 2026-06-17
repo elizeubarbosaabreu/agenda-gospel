@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agenda Gospel 2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #0f0f0f;
+      color: #e8e8e8;
+      line-height: 1.6;
+    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* === HEADER / NAV === */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15,15,15,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo { font-weight: 800; font-size: 1.25rem; color: #fff; letter-spacing: -.02em; }
+    .logo span { color: #fbbf24; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a {
+      color: #aaa; text-decoration: none; font-size: .875rem; font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .btn-sm {
+      display: inline-block; padding: 8px 20px; border-radius: 999px;
+      font-weight: 600; font-size: .8rem; text-decoration: none;
+      background: #fbbf24; color: #0f0f0f; transition: transform .2s, box-shadow .2s;
+    }
+    .btn-sm:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(251,191,36,.35); }
+
+    /* === HERO === */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 96px 0 64px; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 600px 400px at 80% 50%, rgba(251,191,36,.08), transparent);
+      pointer-events: none;
+    }
+    .hero .container {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900;
+      line-height: 1.1; letter-spacing: -.03em; color: #fff;
+    }
+    .hero-content h1 span { color: #fbbf24; }
+    .hero-content p {
+      font-size: 1.125rem; color: #999; margin: 20px 0 32px; max-width: 480px;
+    }
+    .hero-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08);
+      padding: 6px 14px; border-radius: 999px; font-size: .8rem; font-weight: 500; color: #ccc;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary, .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; border-radius: 999px; font-weight: 600;
+      font-size: .95rem; text-decoration: none; transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary {
+      background: #fbbf24; color: #0f0f0f;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(251,191,36,.35); }
+    .btn-secondary {
+      background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.12);
+    }
+    .btn-secondary:hover { transform: translateY(-2px); background: rgba(255,255,255,.12); }
+    .hero-image { text-align: center; }
+    .hero-image img {
+      max-width: 100%; height: auto; border-radius: 20px;
+      box-shadow: 0 20px 80px rgba(0,0,0,.6);
+    }
+
+    /* === SECTIONS === */
+    section { padding: 96px 0; }
+    .section-label {
+      display: inline-block; font-size: .75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: #fbbf24; margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #fff;
+      letter-spacing: -.025em; line-height: 1.15;
+    }
+    .section-sub {
+      color: #888; font-size: 1.1rem; margin-top: 12px; max-width: 640px;
+    }
+    .text-center { text-align: center; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+
+    /* === FEATURES === */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px; margin-top: 56px;
+    }
+    .feature-card {
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06);
+      border-radius: 20px; padding: 32px 28px; transition: transform .2s, border-color .2s;
+    }
+    .feature-card:hover { transform: translateY(-4px); border-color: rgba(251,191,36,.2); }
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: rgba(251,191,36,.12); display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 20px;
+    }
+    .feature-card h3 { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .feature-card p { font-size: .9rem; color: #888; line-height: 1.7; }
+
+    /* === SCREENSHOTS === */
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px; margin-top: 48px;
+    }
+    .screenshots-grid img {
+      width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,.08);
+      transition: transform .3s, box-shadow .3s; cursor: pointer;
+    }
+    .screenshots-grid img:hover {
+      transform: scale(1.03); box-shadow: 0 12px 40px rgba(0,0,0,.5);
+    }
+
+    /* === DOWNLOAD === */
+    #download {
+      background: linear-gradient(180deg, transparent 0%, rgba(251,191,36,.04) 100%);
+    }
+    .download-box {
+      max-width: 560px; margin: 40px auto 0; text-align: center;
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px; padding: 48px 32px;
+    }
+    .hidden { display: none !important; }
+
+    /* === DOWNLOAD POPUP === */
+    .popup-overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(0,0,0,.8); backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .popup-overlay.open { display: flex; }
+    .popup {
+      background: #1a1a1a; border: 1px solid rgba(255,255,255,.1);
+      border-radius: 24px; padding: 40px 32px; max-width: 480px; width: 100%;
+      position: relative; max-height: 90vh; overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0,0,0,.6);
+    }
+    .popup-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 32px; height: 32px; border-radius: 999px;
+      background: rgba(255,255,255,.06); border: none; color: #888;
+      font-size: 1.2rem; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; transition: background .2s;
+    }
+    .popup-close:hover { background: rgba(255,255,255,.12); color: #fff; }
+    .popup-title {
+      font-size: 1.1rem; font-weight: 700; color: #fff; text-align: center;
+      margin-bottom: 8px;
+    }
+    .popup-sub {
+      font-size: .85rem; color: #888; text-align: center; margin-bottom: 24px;
+    }
+    .popup-pix-img {
+      width: 180px; height: 180px; border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.08); margin: 0 auto 20px;
+      display: block;
+    }
+    .popup-pix-info { font-size: .85rem; color: #888; line-height: 1.8; text-align: center; }
+    .popup-pix-info strong { color: #ccc; }
+    .popup-copy-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin: 16px auto 0; padding: 10px 24px; background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1); border-radius: 999px;
+      color: #ccc; font-size: .8rem; cursor: pointer; transition: background .2s;
+      width: fit-content;
+    }
+    .popup-copy-btn:hover { background: rgba(255,255,255,.1); color: #fff; }
+    .popup-copy-btn.copied { background: rgba(34,197,94,.2); border-color: #22c55e; color: #22c55e; }
+    .popup-divider {
+      display: flex; align-items: center; gap: 16px; margin: 24px 0;
+    }
+    .popup-divider::before,
+    .popup-divider::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.08); }
+    .popup-divider span { font-size: .75rem; color: #555; text-transform: uppercase; letter-spacing: .06em; }
+    .popup-countdown {
+      text-align: center;
+    }
+    .popup-countdown-num {
+      font-size: 3rem; font-weight: 900; color: #fbbf24;
+      font-variant-numeric: tabular-nums; letter-spacing: .05em;
+    }
+    .popup-countdown-label { font-size: .8rem; color: #666; margin-top: 4px; }
+    .popup-fun {
+      font-style: italic; color: #999; font-size: .95rem;
+      line-height: 1.6; text-align: center; margin-bottom: 20px;
+    }
+    .popup-loading {
+      text-align: center; margin-top: 20px;
+    }
+    .popup-loading a {
+      display: inline-block; padding: 14px 32px; border-radius: 999px;
+      background: #fbbf24; color: #0f0f0f; font-weight: 600;
+      text-decoration: none; font-size: 1rem;
+    }
+
+    /* === BUY LICENSE === */
+    .license-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      margin-top: 48px;
+    }
+    .license-card {
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06);
+      border-radius: 20px; padding: 40px 32px; text-align: center;
+    }
+    .license-card.featured {
+      border-color: #fbbf24; background: rgba(251,191,36,.06);
+      position: relative;
+    }
+    .license-card.featured::before {
+      content: 'Recomendado'; position: absolute; top: -12px; left: 50%;
+      transform: translateX(-50%); background: #fbbf24; color: #0f0f0f;
+      font-size: .7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; padding: 4px 16px; border-radius: 999px;
+    }
+    .license-card h3 { font-size: 1.3rem; font-weight: 700; color: #fff; }
+    .license-card .price { font-size: 2.5rem; font-weight: 900; color: #fbbf24; margin: 12px 0; }
+    .license-card .price small { font-size: 1rem; color: #888; font-weight: 400; }
+    .license-card ul { list-style: none; margin: 20px 0 28px; text-align: left; }
+    .license-card ul li {
+      padding: 6px 0; color: #aaa; font-size: .9rem; display: flex; align-items: center; gap: 8px;
+    }
+    .license-card ul li::before { content: '✓'; color: #fbbf24; font-weight: 700; }
+
+    /* === DONATE (PIX) === */
+    #donate {
+      background: linear-gradient(180deg, transparent 0%, rgba(251,191,36,.03) 100%);
+    }
+    .pix-box {
+      max-width: 560px; margin: 40px auto 0; text-align: center;
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px; padding: 48px 32px;
+    }
+    .pix-box img {
+      width: 200px; height: 200px; border-radius: 16px;
+      margin-bottom: 24px; border: 1px solid rgba(255,255,255,.08);
+    }
+    .pix-info { font-size: .9rem; color: #888; line-height: 1.8; }
+    .pix-info strong { color: #ccc; }
+    .pix-copy {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 16px; padding: 10px 24px; background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1); border-radius: 999px;
+      color: #ccc; font-size: .8rem; cursor: pointer; transition: background .2s;
+    }
+    .pix-copy:hover { background: rgba(255,255,255,.1); color: #fff; }
+    .pix-copy.copied { background: rgba(34,197,94,.2); border-color: #22c55e; color: #22c55e; }
+
+    /* === FOOTER === */
+    footer {
+      border-top: 1px solid rgba(255,255,255,.06); padding: 32px 0;
+      text-align: center; color: #555; font-size: .85rem;
+    }
+
+    /* === MODAL (screenshot viewer) === */
+    .modal {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.85); backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center;
+      padding: 24px; cursor: pointer;
+    }
+    .modal.open { display: flex; }
+    .modal img {
+      max-width: 90vw; max-height: 90vh; border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.7);
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .hero .container { grid-template-columns: 1fr; gap: 40px; }
+      .hero-content { text-align: center; }
+      .hero-content p { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-badges { justify-content: center; }
+      .license-cards { grid-template-columns: 1fr; }
+      .nav-links a:not(.btn-sm) { display: none; }
+      section { padding: 64px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">Agenda <span>Gospel</span></div>
+    <div class="nav-links">
+      <a href="#features">Recursos</a>
+      <a href="#screenshots">Fotos</a>
+      <a href="#license">Licença</a>
+      <a href="#donate">Doação</a>
+      <a href="#" onclick="openDownloadPopup(); return false;" class="btn-sm">Baixar Grátis</a>
+      <a href="https://wa.me/69984144274?text=Ol%C3%A1%2C%20Elizeu.%20Quero%20comprar%20a%20licen%C3%A7a%20do%20produto%20Agenda%20Gospel%202027%20para%20imprimir%20e%20comercializar.%20Quero%20fazer%20um%20or%C3%A7amento." class="btn-sm">Comprar</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badges">
+        <span class="badge">2027</span>
+        <span class="badge">Bullet Journal</span>
+        <span class="badge">&#9733; Download Grátis</span>
+      </div>
+      <h1>Planeje seu ano com a <span>Agenda Gospel 2027</span></h1>
+      <p>
+        Uma agenda completa no método Bullet Journal para organizar sua vida espiritual,
+        pessoal e profissional com propósito e fé.
+      </p>
+      <div class="hero-actions">
+        <a href="#" onclick="openDownloadPopup(); return false;" class="btn-primary">Baixar Grátis</a>
+        <a href="#license" class="btn-secondary">Adquirir Licença</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="images/agenda_gospel_mockup.png" alt="Agenda Gospel 2027 Mockup" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="section-label text-center">Recursos</div>
+    <h2 class="section-title text-center">Tudo o que você precisa para um ano organizado</h2>
+    <p class="section-sub text-center mx-auto">
+      Baseada no método Bullet Journal, a Agenda Gospel combina planejamento eficiente
+      com reflexões espirituais.
+    </p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3>Visão Geral do Ano</h3>
+        <p>Páginas com o panorama completo de 2027 para planejar metas e eventos importantes do início ao fim.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h3>Plano de Leitura</h3>
+        <p>Plano de leitura bíblica integrado para você acompanhar diariamente e fortalecer sua fé.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✍️</div>
+        <h3>Semanal &amp; Mensal</h3>
+        <p>Espaços para planejamento semanal e mensal no estilo Bullet Journal, com liberdade para personalizar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>Design Limpo</h3>
+        <p>Layout minimalista e pronto para impressão, com margens e espaços para anotações e colagens.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Pronto para Imprimir</h3>
+        <p>Arquivo PDF em alta resolução, formatado para gráfica ou impressão caseira.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🕊️</div>
+        <h3>Propósito Espiritual</h3>
+        <p>Cada seção foi pensada para integrar sua jornada de fé com a organização do dia a dia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section id="screenshots">
+  <div class="container">
+    <div class="section-label text-center">Galeria</div>
+    <h2 class="section-title text-center">Veja por dentro</h2>
+    <p class="section-sub text-center mx-auto">
+      Conheça cada página da Agenda Gospel 2027.
+    </p>
+    <div class="screenshots-grid">
+      <img src="images/screenshots/cover-001.png" alt="Capa" loading="lazy" />
+      <img src="images/screenshots/intro-002.png" alt="Introdução" loading="lazy" />
+      <img src="images/screenshots/annual_overview_2028-149.png" alt="Visão Geral do Ano" loading="lazy" />
+      <img src="images/screenshots/monthly_sample-005.png" alt="Página Mensal" loading="lazy" />
+      <img src="images/screenshots/weekly_sample1-006.png" alt="Semanal 1" loading="lazy" />
+      <img src="images/screenshots/weekly_sample2-007.png" alt="Semanal 2" loading="lazy" />
+      <img src="images/screenshots/reading_plan-143.png" alt="Plano de Leitura" loading="lazy" />
+      <img src="images/screenshots/license-152.png" alt="Licença" loading="lazy" />
+      <img src="images/screenshots/back-153.png" alt="Contracapa" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="container">
+    <div class="section-label text-center">Download Grátis</div>
+    <h2 class="section-title text-center">Baixe gratuitamente</h2>
+    <p class="section-sub text-center mx-auto">
+      Uso pessoal — sem custas. Clique no botão abaixo para começar.
+    </p>
+    <div class="download-box">
+      <p style="color:#aaa;margin-bottom:24px;">
+        &#9749; Planejar, programar e hospedar gasta dinheiro e muito café.
+      </p>
+      <a href="#" onclick="openDownloadPopup(); return false;" class="btn-primary" style="font-size:1.05rem;padding:16px 40px;">
+        &#128229; Quero Baixar Grátis
+      </a>
+      <p style="color:#666;font-size:.8rem;margin-top:20px;">
+        Versão com marca d'água — proibida a comercialização. Capa inclusa.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- BUY LICENSE -->
+<section id="license">
+  <div class="container">
+    <div class="section-label text-center">Licença Comercial</div>
+    <h2 class="section-title text-center">Adquira a licença para comercializar</h2>
+    <p class="section-sub text-center mx-auto">
+      Com a licença você pode imprimir e vender a Agenda Gospel. O produto vem sem capa
+      para você personalizar com sua gráfica.
+    </p>
+    <div class="license-cards">
+      <div class="license-card">
+        <h3>Uso Pessoal</h3>
+        <div class="price">Grátis</div>
+        <ul>
+          <li>Download gratuito</li>
+          <li>Marca d'água</li>
+          <li>Capa inclusa</li>
+          <li>Proibida a comercialização</li>
+        </ul>
+        <a href="#" onclick="openDownloadPopup(); return false;" class="btn-secondary">Baixar Grátis</a>
+      </div>
+      <div class="license-card featured">
+        <h3>Licença Comercial</h3>
+        <div class="price">Sob Consulta <small></small></div>
+        <ul>
+          <li>Imprima e venda</li>
+          <li>Sem marca d'água</li>
+          <li>Sem capa (personalize)</li>
+          <li>Suporte via WhatsApp</li>
+        </ul>
+        <a href="https://wa.me/69984144274?text=Ol%C3%A1%2C%20Elizeu.%20Quero%20comprar%20a%20licen%C3%A7a%20do%20produto%20Agenda%20Gospel%202027%20para%20imprimir%20e%20comercializar.%20Quero%20fazer%20um%20or%C3%A7amento."
+           target="_blank" rel="noopener" class="btn-primary">
+          Fazer Orçamento
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE (PIX) -->
+<section id="donate">
+  <div class="container">
+    <div class="section-label text-center">Apoie o Projeto</div>
+    <h2 class="section-title text-center">Contribua com um PIX</h2>
+    <p class="section-sub text-center mx-auto">
+      Se o material foi útil para você, considere apoiar com qualquer valor.
+      Sua contribuição mantém o projeto ativo.
+    </p>
+    <div class="pix-box">
+      <img src="images/qrcode-pix.png" alt="QR Code PIX" loading="lazy" />
+      <div class="pix-info">
+        <p><strong>Chave PIX:</strong> 947.317.052-15</p>
+        <p><strong>Nome:</strong> Elizeu Barbosa Abreu</p>
+        <p><strong>Tipo:</strong> CPF</p>
+        <p><strong>Código:</strong> AGENDAGOSPEL</p>
+      </div>
+      <div class="pix-copy" id="pix-copy" onclick="copyPix()">&#128203; Copiar código PIX</div>
+      <p style="color:#555;font-size:.75rem;margin-top:16px;">
+        Escaneie o QR Code ou copie o código para transferir
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD POPUP -->
+<div class="popup-overlay" id="download-popup">
+  <div class="popup">
+    <button class="popup-close" onclick="closeDownloadPopup()">&times;</button>
+    <div class="popup-title">&#128229; Baixar Agenda Gospel 2027</div>
+    <div class="popup-sub">Você pode ajudar com um PIX ou aguardar 15 segundos</div>
+
+    <img class="popup-pix-img" src="images/qrcode-pix.png" alt="QR Code PIX" loading="lazy" />
+    <div class="popup-pix-info">
+      <p><strong>Chave PIX:</strong> 947.317.052-15</p>
+      <p><strong>Nome:</strong> Elizeu Barbosa Abreu</p>
+      <p><strong>Código:</strong> AGENDAGOSPEL</p>
+    </div>
+    <button class="popup-copy-btn" id="popup-pix-copy" onclick="copyPixAndRedirect()">
+      &#128203; Copiar código PIX
+    </button>
+
+    <div class="popup-divider"><span>ou</span></div>
+
+    <div id="popup-countdown-area">
+      <p class="popup-fun" id="popup-fun">
+        &#9749; Se não puder doar, não tem problema. O link já vem!
+      </p>
+      <div class="popup-countdown">
+        <div class="popup-countdown-num" id="popup-countdown">15</div>
+        <div class="popup-countdown-label">segundos para o link</div>
+      </div>
+    </div>
+    <div id="popup-redirect-area" class="hidden">
+      <p style="color:#aaa;text-align:center;margin-bottom:16px;">&#127881; Redirecionando...</p>
+      <div class="popup-loading">
+        <a href="https://drive.google.com/file/d/195bUSkNhIiNBbiXal9m4c04AxWG8BeNs/view?usp=sharing"
+           target="_blank" rel="noopener" id="popup-download-link">
+          &#128229; Ir para o Google Drive
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Elizeu Barbosa Abreu &mdash; Agenda Gospel. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="closeModal()">
+  <img id="modal-img" src="" alt="Ampliada" />
+</div>
+
+<script>
+  const PIX_CODE = '00020126330014BR.GOV.BCB.PIX0111947317052155204000053039865802BR5920Elizeu Barbosa Abreu6012PresMediciRO62160512AGENDAGOSPEL6304141D';
+  const DRIVE_URL = 'https://drive.google.com/file/d/195bUSkNhIiNBbiXal9m4c04AxWG8BeNs/view?usp=sharing';
+
+  // Modal for screenshots
+  document.querySelectorAll('.screenshots-grid img').forEach(img => {
+    img.addEventListener('click', function() {
+      document.getElementById('modal-img').src = this.src;
+      document.getElementById('modal').classList.add('open');
+    });
+  });
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+  }
+
+  // Copy PIX (donation section)
+  function copyPix() {
+    navigator.clipboard.writeText(PIX_CODE).then(() => {
+      const el = document.getElementById('pix-copy');
+      el.textContent = '\u2713 Copiado!';
+      el.classList.add('copied');
+      setTimeout(() => {
+        el.innerHTML = '\u{1F4CB} Copiar código PIX';
+        el.classList.remove('copied');
+      }, 3000);
+    });
+  }
+
+  // === DOWNLOAD POPUP ===
+  let popupTimer = null;
+  let popupRedirected = false;
+
+  function openDownloadPopup() {
+    const popup = document.getElementById('download-popup');
+    popup.classList.add('open');
+    popupRedirected = false;
+
+    // Reset UI
+    document.getElementById('popup-countdown-area').classList.remove('hidden');
+    document.getElementById('popup-redirect-area').classList.add('hidden');
+    document.getElementById('popup-pix-copy').innerHTML = '\u{1F4CB} Copiar código PIX';
+    document.getElementById('popup-pix-copy').classList.remove('copied');
+    document.getElementById('popup-fun').textContent = '\u2615 Se não puder doar, não tem problema. O link já vem!';
+
+    // Start countdown
+    let seconds = 15;
+    const countdownEl = document.getElementById('popup-countdown');
+    countdownEl.textContent = seconds;
+
+    if (popupTimer) clearInterval(popupTimer);
+    popupTimer = setInterval(() => {
+      seconds--;
+      countdownEl.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(popupTimer);
+        popupTimer = null;
+        redirectToDrive();
+      }
+    }, 1000);
+  }
+
+  function closeDownloadPopup() {
+    document.getElementById('download-popup').classList.remove('open');
+    if (popupTimer) {
+      clearInterval(popupTimer);
+      popupTimer = null;
+    }
+  }
+
+  function copyPixAndRedirect() {
+    const btn = document.getElementById('popup-pix-copy');
+    navigator.clipboard.writeText(PIX_CODE).then(() => {
+      btn.innerHTML = '\u2713 Copiado! Obrigado!';
+      btn.classList.add('copied');
+      redirectToDrive();
+    });
+  }
+
+  function redirectToDrive() {
+    if (popupRedirected) return;
+    popupRedirected = true;
+
+    if (popupTimer) {
+      clearInterval(popupTimer);
+      popupTimer = null;
+    }
+
+    document.getElementById('popup-countdown-area').classList.add('hidden');
+    document.getElementById('popup-redirect-area').classList.remove('hidden');
+
+    setTimeout(() => {
+      window.open(DRIVE_URL, '_blank');
+    }, 800);
+  }
+
+  // Close popup on overlay click
+  document.getElementById('download-popup').addEventListener('click', function(e) {
+    if (e.target === this) closeDownloadPopup();
+  });
+</script>
+</body>
+</html>
